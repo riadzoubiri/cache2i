@@ -21,5 +21,6 @@ public abstract class DaoFactory {
 
     public abstract UtilisateurDao getUtilisateursDao();
     public abstract CacheDao getCachesDao();
+    public abstract VisiteDao getVisiteDao();
 
 }

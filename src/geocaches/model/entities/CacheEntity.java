@@ -15,15 +15,51 @@ public class CacheEntity implements Serializable {
         return id;
     }
 
+    @Column(name= "GPS")
+    private String gps;
+    public String getGPS() {
+        return gps;
+    }
+    public void setGPS(String gps) {
+        this.gps = gps;
+    }
+
     @Column(name="description")
     private String description;
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
+
+    /***
+    @Column(name= "type")
+    private String type;
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Column(name= "nature")
+    private String nature;
+    public String getNature() {
+        return nature;
+    }
+    public void setNature(String nature) {
+        this.nature = nature;
+    }
+
+    @Column(name= "etat")
+    private String etat;
+    public String getetat() {
+        return etat;
+    }
+    public void setEtat(String etat) {
+        this.gps = etat;
+    }**/
 
     @ManyToOne
     @JoinColumn(name="Utilisateur_idUtilisateur")
@@ -37,7 +73,7 @@ public class CacheEntity implements Serializable {
 
     @Override
     public String toString(){
-        return "Cache {"+ "Id: "+ this.id + " Description: "+ this.description + " Utilisateur: "+ this.utilisateur + " }";
+        return "Cache {"+ "Id: "+ this.id +" GPS:"  + this.gps+ " Description: "+ this.description + " Utilisateur: "+ this.utilisateur + " }";
     }
 
 }

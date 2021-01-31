@@ -10,6 +10,7 @@
     <property name='connection.password'></property>
     <mapping class="geocaches.model.entities.UtilisateurEntity"/>
     <mapping class="geocaches.model.entities.CacheEntity"/>
+    <mapping class="geocaches.model.entities.VisiteEntity"/>
 
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->

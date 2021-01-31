@@ -10,4 +10,9 @@ public class JpaDaoFactory extends DaoFactory{
     public CacheDao getCachesDao() {
         return JpaDaoCache.getInstance();
     }
+
+    @Override
+    public VisiteDao getVisiteDao() {
+        return JpaDaoVisite.getInstance();
+    }
 }
