@@ -5,6 +5,7 @@ import geocaches.model.entities.UtilisateurEntity;
 import org.hibernate.query.Query;
 
 import java.util.Collection;
+import java.util.List;
 
 public class JpaDaoCache extends JpaDao<CacheEntity> implements CacheDao {
     private static JpaDaoCache instance;
@@ -26,7 +27,25 @@ public class JpaDaoCache extends JpaDao<CacheEntity> implements CacheDao {
     }
 
     public CacheEntity findById(int idCache) {
-        Query query= session.createQuery("select a from CacheEntity a where a.id='"+idCache +"'");
+        Query query= session.createQuery("select a from CacheEntity a where a.id=:id");
+        query.setParameter("id",idCache);
         return (CacheEntity) query.getSingleResult();
     }
+
+    @Override
+    public List<CacheEntity> findByUser(String userLogin) {
+        Query query= session.createQuery("select a from CacheEntity a where utilisateur=:userLogin");
+        query.setParameter("userLogin",userLogin);
+        return (List<CacheEntity>) query.getResultList();
+    }
+
+    @Override
+    public List<CacheEntity> findByLocation(String location) {
+        Query query= session.createQuery("select a from CacheEntity a where gps=:loc");
+        query.setParameter("loc",location);
+        return (List<CacheEntity>) query.getResultList();
+    }
+
+
+
 }

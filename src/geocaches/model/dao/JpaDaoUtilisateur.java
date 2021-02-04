@@ -26,7 +26,8 @@ public class JpaDaoUtilisateur extends JpaDao<UtilisateurEntity> implements Util
 
     @Override
     public UtilisateurEntity findByLogin(String login) {
-        Query query= session.createQuery("select a from UtilisateurEntity a where a.login='"+login +"'");
+        Query query= session.createQuery("select a from UtilisateurEntity a where a.login=:log");
+        query.setParameter("log",login);
         return (UtilisateurEntity) query.getSingleResult();
     }
 }
