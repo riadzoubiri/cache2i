@@ -7,9 +7,12 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import javax.persistence.EntityManager;
+
 public abstract class JpaDao<T> implements Dao<T> {
     protected static final SessionFactory sessionFactory;
     protected static Session session;
+
 
     static {
         try{
@@ -35,4 +38,19 @@ public abstract class JpaDao<T> implements Dao<T> {
         session.delete(obj);
         transaction.commit();
     }
+
+    @Override
+    public boolean update(T obj){
+        try{
+            Transaction transaction = session.beginTransaction();
+            session.merge(obj);
+            transaction.commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
 }

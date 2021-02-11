@@ -1,10 +1,11 @@
 package geocaches.model.entities;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table (name = "visite", schema = "geocaches")
+@Table (name = "Visite", schema = "geocaches")
 public class VisiteEntity implements Serializable {
     @Id
     @Column(name="idVisite")
@@ -24,19 +25,19 @@ public class VisiteEntity implements Serializable {
     }
 
     @Column(name= "decouverte")
-    private String decouverte;
-    public String getDecouverte() {
+    private int decouverte;
+    public int getDecouverte() {
         return decouverte;
     }
-    public void setDecouverte(String decouverte) {this.decouverte = decouverte;
+    public void setDecouverte(int decouverte) {this.decouverte = decouverte;
     }
 
     @Column(name= "date")
-    private String date;
-    public String getDate() {
+    private Timestamp date;
+    public Timestamp getDate() {
         return date;
     }
-    public void setDate(String date) {this.date = date;
+    public void setDate(Timestamp date) {this.date = date;
     }
 
     @Column(name= "commentaire")

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table (name = "cache", schema = "geocaches")
+@Table (name = "Cache", schema = "geocaches")
 public class CacheEntity implements Serializable {
 
     @Id
@@ -33,7 +33,7 @@ public class CacheEntity implements Serializable {
         this.description = description;
     }
 
-    /***
+
     @Column(name= "type")
     private String type;
     public String getType() {
@@ -58,8 +58,8 @@ public class CacheEntity implements Serializable {
         return etat;
     }
     public void setEtat(String etat) {
-        this.gps = etat;
-    }**/
+        this.etat = etat;
+    }
 
     @ManyToOne
     @JoinColumn(name="Utilisateur_idUtilisateur")

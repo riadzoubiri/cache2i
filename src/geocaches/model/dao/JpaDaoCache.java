@@ -32,10 +32,9 @@ public class JpaDaoCache extends JpaDao<CacheEntity> implements CacheDao {
         return (CacheEntity) query.getSingleResult();
     }
 
-    @Override
-    public List<CacheEntity> findByUser(String userLogin) {
-        Query query= session.createQuery("select a from CacheEntity a where utilisateur=:userLogin");
-        query.setParameter("userLogin",userLogin);
+    public List<CacheEntity> findByUser(UtilisateurEntity user) {
+        Query query= session.createQuery("select a from CacheEntity a where utilisateur=:user");
+        query.setParameter("user",user);
         return (List<CacheEntity>) query.getResultList();
     }
 

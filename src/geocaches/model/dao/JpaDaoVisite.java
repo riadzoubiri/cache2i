@@ -1,6 +1,7 @@
 package geocaches.model.dao;
 
 import geocaches.model.entities.CacheEntity;
+import geocaches.model.entities.UtilisateurEntity;
 import geocaches.model.entities.VisiteEntity;
 import org.hibernate.query.Query;
 
@@ -35,9 +36,9 @@ public class JpaDaoVisite extends JpaDao<VisiteEntity> implements VisiteDao {
 
 
     @Override
-    public List<VisiteEntity> findByUser(String userLogin) {
-        Query query= session.createQuery("select a from VisiteEntity a where utilisateur=:userLogin");
-        query.setParameter("userLogin",userLogin);
+    public List<VisiteEntity> findByUser(UtilisateurEntity user){
+        Query query= session.createQuery("select a from VisiteEntity a where utilisateur=:user");
+        query.setParameter("user",user);
         return (List<VisiteEntity>) query.getResultList();
     }
 
@@ -45,6 +46,13 @@ public class JpaDaoVisite extends JpaDao<VisiteEntity> implements VisiteDao {
     public List<VisiteEntity> findByDate(String dateTime) {
         Query query= session.createQuery("select a from VisiteEntity a where date=:dateTime");
         query.setParameter("dateTime",dateTime);
+        return (List<VisiteEntity>) query.getResultList();
+    }
+
+    @Override
+    public List<VisiteEntity> findByCache(CacheEntity cache){
+        Query query= session.createQuery("select a from VisiteEntity a where cache=:cache");
+        query.setParameter("cache",cache);
         return (List<VisiteEntity>) query.getResultList();
     }
 }
