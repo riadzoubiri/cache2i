@@ -61,7 +61,7 @@ public class CacheEntity implements Serializable {
         this.etat = etat;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Utilisateur_idUtilisateur")
     private UtilisateurEntity utilisateur;
     public UtilisateurEntity getUtilisateur() {
@@ -73,7 +73,7 @@ public class CacheEntity implements Serializable {
 
     @Override
     public String toString(){
-        return "Cache {"+ "Id: "+ this.id +" GPS:"  + this.gps+ " Description: "+ this.description + " Utilisateur: "+ this.utilisateur + " }";
+        return "Cache {"+ "Id: "+ this.id +" GPS:"  + this.gps+ " Description: "+ this.description + " \nUtilisateur: "+ this.utilisateur + " }";
     }
 
 }

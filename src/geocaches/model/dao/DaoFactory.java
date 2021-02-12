@@ -4,7 +4,8 @@ public abstract class DaoFactory {
     public enum PersistenceType{
         JPA,
         JDBC,
-        XML
+        XML,
+        MongoDb
     };
     public static DaoFactory getDaoFactory(PersistenceType type) {
         switch (type) {

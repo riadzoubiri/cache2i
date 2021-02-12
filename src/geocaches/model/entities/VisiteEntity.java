@@ -48,9 +48,9 @@ public class VisiteEntity implements Serializable {
     public void setCommentaire(String commentaire) {this.commentaire = commentaire;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Utilisateur_idUtilisateur")
-    private UtilisateurEntity utilisateur;
+        private UtilisateurEntity utilisateur;
     public UtilisateurEntity getUtilisateur() {
         return utilisateur;
     }
@@ -58,7 +58,7 @@ public class VisiteEntity implements Serializable {
         this.utilisateur = utilisateur;
     }
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Cache_idCache")
     private CacheEntity cache;
     public CacheEntity getCache() {
@@ -70,6 +70,6 @@ public class VisiteEntity implements Serializable {
 
     @Override
     public String toString(){
-        return "Visite {"+ "Id: "+ this.id +" photo:"  + this.photo+ " Nombre de fois découverte: "+ this.decouverte + " date: "+ this.date + " Commentaire: "+ this.commentaire + " Utilisateur: "+ this.utilisateur + " Cache: "+ this.cache +" }";
+        return "Visite {"+ "Id: "+ this.id +" photo:"  + this.photo+ " Nombre de fois découverte: "+ this.decouverte + " date: "+ this.date + " Commentaire: "+ this.commentaire + " \nUtilisateur: "+ this.utilisateur + " \nCache: "+ this.cache +" }";
     }
 }
