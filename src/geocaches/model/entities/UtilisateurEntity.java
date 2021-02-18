@@ -1,4 +1,5 @@
 package geocaches.model.entities;
+import dev.morphia.annotations.Reference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.io.Serializable;
 public class UtilisateurEntity implements Serializable {
 
     @Id
+    @dev.morphia.annotations.Id
     @Column(name="idUtilisateur")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

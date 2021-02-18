@@ -17,7 +17,7 @@ public class Model {
     private CacheDao cacheManager;
     private VisiteDao visiteManager;
     public Model(){
-        DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.PersistenceType.JPA);
+        DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.PersistenceType.MongoDb);
         this.utilisateurManager = daoFactory.getUtilisateursDao();
         this.cacheManager = daoFactory.getCachesDao();
         this.visiteManager = daoFactory.getVisiteDao();

@@ -1,5 +1,5 @@
 package geocaches.model.entities;
-
+import dev.morphia.annotations.Reference;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class CacheEntity implements Serializable {
 
     @Id
+    @dev.morphia.annotations.Id
     @Column(name="idCache")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -61,6 +62,7 @@ public class CacheEntity implements Serializable {
         this.etat = etat;
     }
 
+    @Reference()
     @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Utilisateur_idUtilisateur")
     private UtilisateurEntity utilisateur;

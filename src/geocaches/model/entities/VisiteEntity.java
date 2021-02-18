@@ -1,4 +1,5 @@
 package geocaches.model.entities;
+import dev.morphia.annotations.Reference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -8,6 +9,7 @@ import java.util.Date;
 @Table (name = "Visite", schema = "geocaches")
 public class VisiteEntity implements Serializable {
     @Id
+    @dev.morphia.annotations.Id
     @Column(name="idVisite")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -48,6 +50,7 @@ public class VisiteEntity implements Serializable {
     public void setCommentaire(String commentaire) {this.commentaire = commentaire;
     }
 
+    @Reference()
     @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Utilisateur_idUtilisateur")
         private UtilisateurEntity utilisateur;
@@ -58,6 +61,7 @@ public class VisiteEntity implements Serializable {
         this.utilisateur = utilisateur;
     }
 
+    @Reference()
     @OneToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Cache_idCache")
     private CacheEntity cache;

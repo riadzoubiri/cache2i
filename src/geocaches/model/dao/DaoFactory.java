@@ -3,18 +3,14 @@ package geocaches.model.dao;
 public abstract class DaoFactory {
     public enum PersistenceType{
         JPA,
-        JDBC,
-        XML,
         MongoDb
     };
     public static DaoFactory getDaoFactory(PersistenceType type) {
         switch (type) {
             case JPA:
                 return new JpaDaoFactory();
-            case JDBC:
-                throw new UnsupportedOperationException("JDBC DAO not implemented");
-            case XML:
-                throw new UnsupportedOperationException("XML DAO not implemented");
+            case MongoDb:
+                return new MongoDaoFactory();
             default:
                 throw new UnsupportedOperationException("DAO not implemented");
         }
