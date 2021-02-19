@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 12, 2021 at 07:44 AM
+-- Generation Time: Feb 19, 2021 at 10:35 PM
 -- Server version: 8.0.23-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -29,13 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Cache` (
-  `idCache` int NOT NULL,
+  `idCache` char(36) NOT NULL,
   `GPS` varchar(45) NOT NULL,
   `description` varchar(45) DEFAULT NULL,
   `type` enum('traditionnelle','piste','objet','voyageur') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `nature` enum('physique','virtuelle') NOT NULL,
   `etat` enum('active','activation','fermee','suspendue') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `Utilisateur_idUtilisateur` int NOT NULL
+  `Utilisateur_idUtilisateur` char(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -45,18 +45,10 @@ CREATE TABLE `Cache` (
 --
 
 CREATE TABLE `Utilisateur` (
-  `idUtilisateur` int NOT NULL,
+  `idUtilisateur` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `login` varchar(45) NOT NULL,
   `photo` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `Utilisateur`
---
-
-INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `photo`) VALUES
-(1, 'rizou', NULL),
-(2, 'victo', NULL);
 
 -- --------------------------------------------------------
 
@@ -65,13 +57,13 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `photo`) VALUES
 --
 
 CREATE TABLE `Visite` (
-  `idVisite` int NOT NULL,
+  `idVisite` char(36) NOT NULL,
   `date` date NOT NULL,
   `photo` varchar(45) DEFAULT NULL,
   `decouverte` int NOT NULL DEFAULT '0',
   `commentaire` varchar(1000) DEFAULT NULL,
-  `Utilisateur_idUtilisateur` int NOT NULL,
-  `Cache_idCache` int NOT NULL
+  `Utilisateur_idUtilisateur` char(36) NOT NULL,
+  `Cache_idCache` char(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -89,8 +81,7 @@ ALTER TABLE `Cache`
 -- Indexes for table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
-  ADD PRIMARY KEY (`idUtilisateur`),
-  ADD UNIQUE KEY `login_UNIQUE` (`login`);
+  ADD PRIMARY KEY (`idUtilisateur`);
 
 --
 -- Indexes for table `Visite`
@@ -99,28 +90,6 @@ ALTER TABLE `Visite`
   ADD PRIMARY KEY (`idVisite`),
   ADD KEY `fk_Visite_Utilisateur_idx` (`Utilisateur_idUtilisateur`),
   ADD KEY `fk_Visite_Cache1_idx` (`Cache_idCache`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `Cache`
---
-ALTER TABLE `Cache`
-  MODIFY `idCache` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  MODIFY `idUtilisateur` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `Visite`
---
-ALTER TABLE `Visite`
-  MODIFY `idVisite` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
