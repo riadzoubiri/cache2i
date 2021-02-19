@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface CacheDao extends Dao<CacheEntity>{
 
-    public CacheEntity findById(int id);
+    public CacheEntity findById(String id);
     public List<CacheEntity> findByUser(UtilisateurEntity user);
     public List<CacheEntity> findByLocation(String location);
+    public void deleteByUser(UtilisateurEntity user);
 }

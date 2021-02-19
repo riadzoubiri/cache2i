@@ -28,7 +28,7 @@ public class JpaDaoVisite extends JpaDao<VisiteEntity> implements VisiteDao {
     }
 
     @Override
-    public VisiteEntity findById(int id) {
+    public VisiteEntity findById(String id) {
         Query query = session.createQuery("SELECT a FROM VisiteEntity a where id=:id");
         query.setParameter("id",id);
         return (VisiteEntity) query.getSingleResult();
@@ -55,4 +55,10 @@ public class JpaDaoVisite extends JpaDao<VisiteEntity> implements VisiteDao {
         query.setParameter("cache",cache);
         return (List<VisiteEntity>) query.getResultList();
     }
+
+    @Override
+    public void deleteByUser(UtilisateurEntity user) {}
+
+    @Override
+    public void deleteByCache(CacheEntity cache) {}
 }

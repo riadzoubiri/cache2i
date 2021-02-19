@@ -1,5 +1,8 @@
 package geocaches.model.dao;
 
+import dev.morphia.Datastore;
+import dev.morphia.Morphia;
+import dev.morphia.query.Query;
 import geocaches.model.entities.CacheEntity;
 import geocaches.model.entities.UtilisateurEntity;
 import geocaches.model.entities.VisiteEntity;
@@ -22,23 +25,74 @@ private static MongoDaoVisite instance;
         }
 
 
+
+
+
+
     @Override
-    public VisiteEntity findById(int id) {
-        return null;
+    public VisiteEntity findById(String id) {
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<VisiteEntity> query = datastore.find(VisiteEntity.class)
+                .field("login")
+                .contains(id);
+        return query.first();
     }
 
     @Override
     public List<VisiteEntity> findByUser(UtilisateurEntity user) {
-        return null;
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<VisiteEntity> query = datastore.find(VisiteEntity.class)
+                .field("utilisateur._id")
+                .equal(user.getId());
+        return query.asList();
     }
 
     @Override
     public List<VisiteEntity> findByDate(String dateTime) {
-        return null;
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<VisiteEntity> query = datastore.find(VisiteEntity.class)
+                .field("datetime")
+                .contains(dateTime);
+        return query.asList();
     }
 
     @Override
     public List<VisiteEntity> findByCache(CacheEntity cache) {
-        return null;
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<VisiteEntity> query = datastore.find(VisiteEntity.class).
+                field("cache._id").equal(cache.getId());
+        return query.asList();
+    }
+
+    @Override
+    public void deleteByUser(UtilisateurEntity user) {
+
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<VisiteEntity> query = datastore.find(VisiteEntity.class)
+                .field("utilisateur._id")
+                .equal(user.getId());
+        datastore.delete(query);
+    }
+
+    @Override
+    public void deleteByCache(CacheEntity cache) {
+
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<VisiteEntity> query = datastore.find(VisiteEntity.class)
+                .field("utilisateur._id")
+                .equal(cache.getId());
+        datastore.delete(query);
     }
 }

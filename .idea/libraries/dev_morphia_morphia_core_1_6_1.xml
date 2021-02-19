@@ -1,0 +1,35 @@
+<component name="libraryTable">
+  <library name="dev.morphia.morphia:core:1.6.1" type="repository">
+    <properties maven-id="dev.morphia.morphia:core:1.6.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/core-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-sync-4.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bson-4.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-core-4.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-legacy-4.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/proxytoys-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/classgraph-4.8.78.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/core-1.6.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-sync-4.1.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bson-4.1.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-core-4.1.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-legacy-4.1.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/proxytoys-1.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/classgraph-4.8.78-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.25-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/core-1.6.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-sync-4.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bson-4.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-core-4.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mongodb-driver-legacy-4.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/proxytoys-1.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/classgraph-4.8.78-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.25-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

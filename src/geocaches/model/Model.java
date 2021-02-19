@@ -10,14 +10,27 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 
 public class Model {
+
     private UtilisateurDao utilisateurManager;
     private CacheDao cacheManager;
     private VisiteDao visiteManager;
-    public Model(){
-        DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.PersistenceType.MongoDb);
+    private int dbChoice;
+    public Model(int dbChoice){
+        this.dbChoice=dbChoice;
+        DaoFactory daoFactory=null;
+        switch (dbChoice){
+            case 1:
+                daoFactory = DaoFactory.getDaoFactory(DaoFactory.PersistenceType.JPA);
+                break;
+            case 2:
+                daoFactory = DaoFactory.getDaoFactory(DaoFactory.PersistenceType.MongoDb);
+                break;
+        }
+
         this.utilisateurManager = daoFactory.getUtilisateursDao();
         this.cacheManager = daoFactory.getCachesDao();
         this.visiteManager = daoFactory.getVisiteDao();
@@ -33,13 +46,17 @@ public class Model {
     }
     public UtilisateurEntity creerUtilisateur(String login){
         UtilisateurEntity utilisateurEntity = new UtilisateurEntity();
+        utilisateurEntity.setId(UUID.randomUUID().toString());
         utilisateurEntity.setLogin(login);
         return utilisateurManager.create(utilisateurEntity);
     }
     public boolean modifUtilisateur(UtilisateurEntity user){
+
         return utilisateurManager.update(user);
     };
     public void suppUtilisateur(UtilisateurEntity utilisateurEntity){
+        cacheManager.deleteByUser(utilisateurEntity);
+        visiteManager.deleteByUser(utilisateurEntity);
         utilisateurManager.delete(utilisateurEntity);
     }
     public UtilisateurEntity getUtilisateurByLogin(String login){
@@ -53,6 +70,7 @@ public class Model {
 
     public CacheEntity creerCache(String description, String gps, UtilisateurEntity utilisateurEntity,String etat,String nature,String type) {
         CacheEntity cacheEntity = new CacheEntity();
+        cacheEntity.setId(UUID.randomUUID().toString());
         cacheEntity.setGPS(gps);
         cacheEntity.setDescription(description);
         cacheEntity.setUtilisateur(utilisateurEntity);
@@ -62,12 +80,13 @@ public class Model {
         return cacheManager.create(cacheEntity);
     }
     public void suppCache(CacheEntity cacheEntity){
+        visiteManager.deleteByCache(cacheEntity);
         cacheManager.delete(cacheEntity);
     }
     public Collection<CacheEntity> getCaches(){
         return cacheManager.findAll();
     }
-    public CacheEntity getCacheById(int id){
+    public CacheEntity getCacheById(String id){
         return cacheManager.findById(id);
     }
     public List<CacheEntity> getCacheByUser(UtilisateurEntity user){
@@ -77,6 +96,7 @@ public class Model {
         return cacheManager.findByLocation(loc);
     }
     public boolean modifCache(CacheEntity cache){
+        
         return cacheManager.update(cache);
     };
 
@@ -87,6 +107,7 @@ public class Model {
      */
     public VisiteEntity creerVisite(String photo, int decouverte, Timestamp date, String commentaire, UtilisateurEntity utilisateurEntity, CacheEntity cacheEntity) {
         VisiteEntity visiteEntity = new VisiteEntity();
+        visiteEntity.setId(UUID.randomUUID().toString());
         visiteEntity.setPhoto(photo);
         visiteEntity.setDecouverte(decouverte);
         visiteEntity.setDate(date);
@@ -100,7 +121,7 @@ public class Model {
         visiteManager.delete(visiteEntity);
     }
     public Collection<VisiteEntity> getVisites(){return visiteManager.findAll();}
-    public VisiteEntity getVisiteById(int id){
+    public VisiteEntity getVisiteById(String id){
         return visiteManager.findById(id);
     }
     public List<VisiteEntity> getVisiteByUser(UtilisateurEntity user){

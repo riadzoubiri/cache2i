@@ -8,9 +8,11 @@ import java.util.List;
 
 public interface VisiteDao extends Dao<VisiteEntity>{
 
-    public VisiteEntity findById(int id);
+    public VisiteEntity findById(String id);
     public List<VisiteEntity> findByUser(UtilisateurEntity user);
     public List<VisiteEntity> findByDate(String dateTime);
     public List<VisiteEntity> findByCache(CacheEntity cache);
+    public void deleteByUser(UtilisateurEntity user);
+    public void deleteByCache(CacheEntity cache);
 
 }

@@ -4,17 +4,23 @@ import dev.morphia.annotations.Reference;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
+@dev.morphia.annotations.Entity("UtilisateurEntity")
 @Entity
 @Table (name = "Utilisateur", schema = "geocaches")
 public class UtilisateurEntity implements Serializable {
 
     @Id
     @dev.morphia.annotations.Id
+    @dev.morphia.annotations.Property("id")
     @Column(name="idUtilisateur")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    public int getId() {
+    private String id;
+    public String getId() {
         return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Column(name="login")

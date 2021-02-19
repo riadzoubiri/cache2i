@@ -1,5 +1,8 @@
 package geocaches.model.dao;
 
+import dev.morphia.Datastore;
+import dev.morphia.Morphia;
+import dev.morphia.query.Query;
 import geocaches.model.entities.CacheEntity;
 import geocaches.model.entities.UtilisateurEntity;
 
@@ -22,21 +25,55 @@ public class MongoDaoCache extends MongoDao<CacheEntity> implements CacheDao {
 
     @Override
     public Collection<CacheEntity> findAll() {
-       return  null;
-
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<CacheEntity> query = datastore.find(CacheEntity.class);
+        return query.asList();
     }
 
-    public CacheEntity findById(int idCache) {
-        return  null;
+    public CacheEntity findById(String idCache) {
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<CacheEntity> query = datastore.find(CacheEntity.class)
+                .field("login")
+                .contains(idCache);
+        return query.first();
     }
 
     public List<CacheEntity> findByUser(UtilisateurEntity user) {
-        return  null;
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<CacheEntity> query = datastore.find(CacheEntity.class)
+                .field("utilisateur._id")
+                .equal(user.getId());
+        return query.asList();
     }
 
     @Override
     public List<CacheEntity> findByLocation(String location) {
-        return  null;
+
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<CacheEntity> query = datastore.find(CacheEntity.class)
+                .field("gps")
+                .contains(location);
+        return query.asList();
+    }
+
+    @Override
+    public void deleteByUser(UtilisateurEntity user) {
+
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<CacheEntity> query = datastore.find(CacheEntity.class)
+                .field("utilisateur._id")
+                .equal(user.getId());
+        datastore.delete(query);
     }
 
 

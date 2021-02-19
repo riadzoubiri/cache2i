@@ -26,7 +26,7 @@ public class JpaDaoCache extends JpaDao<CacheEntity> implements CacheDao {
 
     }
 
-    public CacheEntity findById(int idCache) {
+    public CacheEntity findById(String idCache) {
         Query query= session.createQuery("select a from CacheEntity a where a.id=:id");
         query.setParameter("id",idCache);
         return (CacheEntity) query.getSingleResult();
@@ -44,6 +44,9 @@ public class JpaDaoCache extends JpaDao<CacheEntity> implements CacheDao {
         query.setParameter("loc",location);
         return (List<CacheEntity>) query.getResultList();
     }
+
+    @Override
+    public void deleteByUser(UtilisateurEntity user){}
 
 
 

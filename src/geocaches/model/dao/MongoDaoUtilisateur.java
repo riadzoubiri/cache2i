@@ -24,6 +24,11 @@ public class MongoDaoUtilisateur extends MongoDao<UtilisateurEntity> implements 
     }
 
 
+
+
+
+
+
     @Override
     public Collection<UtilisateurEntity> findAll() {
         Morphia morphia=new Morphia();
@@ -35,6 +40,12 @@ public class MongoDaoUtilisateur extends MongoDao<UtilisateurEntity> implements 
 
     @Override
     public UtilisateurEntity findByLogin(String login) {
-       return null;
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<UtilisateurEntity> query = datastore.find(UtilisateurEntity.class)
+                .field("login")
+                .contains(login);
+        return query.first();
     }
 }

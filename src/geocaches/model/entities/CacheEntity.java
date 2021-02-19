@@ -9,11 +9,15 @@ public class CacheEntity implements Serializable {
 
     @Id
     @dev.morphia.annotations.Id
+    @dev.morphia.annotations.Property("id")
     @Column(name="idCache")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    public int getId() {
+    private String id;
+    public String getId() {
         return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Column(name= "GPS")
@@ -62,7 +66,7 @@ public class CacheEntity implements Serializable {
         this.etat = etat;
     }
 
-    @Reference()
+    @dev.morphia.annotations.Embedded
     @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Utilisateur_idUtilisateur")
     private UtilisateurEntity utilisateur;

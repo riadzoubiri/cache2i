@@ -10,11 +10,15 @@ import java.util.Date;
 public class VisiteEntity implements Serializable {
     @Id
     @dev.morphia.annotations.Id
+    @dev.morphia.annotations.Property("id")
     @Column(name="idVisite")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    public int getId() {
+    private String id;
+    public String getId() {
         return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Column(name= "photo")
@@ -50,7 +54,7 @@ public class VisiteEntity implements Serializable {
     public void setCommentaire(String commentaire) {this.commentaire = commentaire;
     }
 
-    @Reference()
+    @dev.morphia.annotations.Embedded
     @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Utilisateur_idUtilisateur")
         private UtilisateurEntity utilisateur;
@@ -61,7 +65,7 @@ public class VisiteEntity implements Serializable {
         this.utilisateur = utilisateur;
     }
 
-    @Reference()
+    @dev.morphia.annotations.Embedded
     @OneToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name="Cache_idCache")
     private CacheEntity cache;

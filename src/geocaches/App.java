@@ -6,10 +6,14 @@ import geocaches.model.entities.UtilisateurEntity;
 import geocaches.model.entities.VisiteEntity;
 import java.util.*;
 import java.sql.Timestamp;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class App {
+
+
+
 
     public static void main(String[] args) {
         new App();
@@ -17,6 +21,7 @@ public class App {
 
     private Model model;
     private Scanner scanner;
+    private int db;
     public void createMultipleCaches(){
         
         UtilisateurEntity riyad=this.model.creerUtilisateur("riyad");
@@ -84,9 +89,8 @@ public class App {
     }
 
     public void createMultipleUsers(){
-        
-        UtilisateurEntity riyad=this.model.creerUtilisateur("rizou");
         UtilisateurEntity victo=this.model.creerUtilisateur("victo");
+        UtilisateurEntity riyad=this.model.creerUtilisateur("rizou");
     }
 
     public void getAllUsers(){
@@ -124,7 +128,7 @@ public class App {
         System.out.println("Cache id :");
         String cache=scanner.next();
         Collection<VisiteEntity> visites=this.model.getVisiteByCache(
-                this.model.getCacheById(Integer.parseInt(cache))
+                this.model.getCacheById(cache)
         );
         System.out.println(visites);
     }
@@ -153,7 +157,7 @@ public class App {
         
         System.out.println("Cache id :");
         String cacheId=scanner.next();
-        CacheEntity cache=this.model.getCacheById(Integer.parseInt(cacheId));
+        CacheEntity cache=this.model.getCacheById(cacheId);
         System.out.println("New description :");
         String description=scanner.next();
         cache.setDescription(description);
@@ -165,7 +169,7 @@ public class App {
         
         System.out.println("Cache id :");
         String cacheId=scanner.next();
-        CacheEntity cache=this.model.getCacheById(Integer.parseInt(cacheId));
+        CacheEntity cache=this.model.getCacheById(cacheId);
         this.model.suppCache(cache);
     }
 
@@ -173,7 +177,7 @@ public class App {
         
         System.out.println("Visite id :");
         String visiteID=scanner.next();
-        VisiteEntity visite=this.model.getVisiteById(Integer.parseInt(visiteID));
+        VisiteEntity visite=this.model.getVisiteById(visiteID);
         System.out.println("New comment :");
         String comment=scanner.next();
         visite.setCommentaire(comment);
@@ -184,7 +188,7 @@ public class App {
         
         System.out.println("Visite id :");
         String visiteID=scanner.next();
-        VisiteEntity visite=this.model.getVisiteById(Integer.parseInt(visiteID));
+        VisiteEntity visite=this.model.getVisiteById(visiteID);
         this.model.suppVisite(visite);
     }
 
@@ -302,7 +306,25 @@ public class App {
 
     public App(){
         this.scanner = new Scanner(System.in);
-        this.model=new Model();
+        this.db=0;
+        do{
+            System.out.println("Bonjour,\n1- Mysql\n2-MongoDb");
+            String choice = scanner.next();
+            switch (choice)
+            {
+                case "1":
+                    this.db=1;
+                    break;
+                case "2":
+                    this.db=2;
+                    break;
+                default:
+                    System.out.println("Mauvais choix");
+                    this.db=0;
+                    break;
+            }
+        }while(this.db==0);
+        this.model=new Model(this.db);
         String choice="";
         do{
             showMenu();
