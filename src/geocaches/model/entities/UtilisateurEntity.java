@@ -14,7 +14,6 @@ public class UtilisateurEntity implements Serializable {
     @dev.morphia.annotations.Id
     @dev.morphia.annotations.Property("id")
     @Column(name="idUtilisateur")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     public String getId() {
         return id;

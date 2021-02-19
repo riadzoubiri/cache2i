@@ -76,5 +76,17 @@ public class MongoDaoCache extends MongoDao<CacheEntity> implements CacheDao {
         datastore.delete(query);
     }
 
+    @Override
+    public void updateByUser(UtilisateurEntity user){
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<CacheEntity> query = datastore.find(CacheEntity.class)
+                .field("utilisateur._id")
+                .equal(user.getId());
+
+        datastore.update(query, datastore.createUpdateOperations(CacheEntity.class).set("utilisateur", user));
+    }
+
 
 }

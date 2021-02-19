@@ -305,6 +305,7 @@ public class App {
     }
 
     public App(){
+
         this.scanner = new Scanner(System.in);
         this.db=0;
         do{

@@ -48,6 +48,8 @@ public class JpaDaoCache extends JpaDao<CacheEntity> implements CacheDao {
     @Override
     public void deleteByUser(UtilisateurEntity user){}
 
+    @Override
+    public void updateByUser(UtilisateurEntity user){}
 
 
 }

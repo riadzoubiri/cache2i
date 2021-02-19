@@ -51,7 +51,8 @@ public class Model {
         return utilisateurManager.create(utilisateurEntity);
     }
     public boolean modifUtilisateur(UtilisateurEntity user){
-
+        cacheManager.updateByUser(user);
+        visiteManager.updateByUser(user);
         return utilisateurManager.update(user);
     };
     public void suppUtilisateur(UtilisateurEntity utilisateurEntity){
@@ -96,7 +97,7 @@ public class Model {
         return cacheManager.findByLocation(loc);
     }
     public boolean modifCache(CacheEntity cache){
-        
+        visiteManager.updateByCache(cache);
         return cacheManager.update(cache);
     };
 

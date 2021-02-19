@@ -12,4 +12,5 @@ public interface CacheDao extends Dao<CacheEntity>{
     public List<CacheEntity> findByUser(UtilisateurEntity user);
     public List<CacheEntity> findByLocation(String location);
     public void deleteByUser(UtilisateurEntity user);
+    public void updateByUser(UtilisateurEntity user);
 }

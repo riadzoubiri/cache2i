@@ -11,7 +11,6 @@ public class CacheEntity implements Serializable {
     @dev.morphia.annotations.Id
     @dev.morphia.annotations.Property("id")
     @Column(name="idCache")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     public String getId() {
         return id;

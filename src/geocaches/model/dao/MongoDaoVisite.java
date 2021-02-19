@@ -95,4 +95,28 @@ private static MongoDaoVisite instance;
                 .equal(cache.getId());
         datastore.delete(query);
     }
+
+    @Override
+    public void updateByUser(UtilisateurEntity user){
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<VisiteEntity> query = datastore.find(VisiteEntity.class)
+                .field("utilisateur._id")
+                .equal(user.getId());
+
+        datastore.update(query, datastore.createUpdateOperations(VisiteEntity.class).set("utilisateur", user));
+    }
+
+    @Override
+    public void updateByCache(CacheEntity cache){
+        Morphia morphia=new Morphia();
+        morphia.mapPackage("geocaches.model.entities");
+        Datastore datastore= morphia.createDatastore(mongoClient,"geocache");
+        Query<CacheEntity> query = datastore.find(CacheEntity.class)
+                .field("utilisateur._id")
+                .equal(cache.getId());
+
+        datastore.update(query, datastore.createUpdateOperations(CacheEntity.class).set("cache", cache));
+    }
 }

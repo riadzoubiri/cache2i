@@ -61,4 +61,10 @@ public class JpaDaoVisite extends JpaDao<VisiteEntity> implements VisiteDao {
 
     @Override
     public void deleteByCache(CacheEntity cache) {}
+
+    @Override
+    public void updateByUser(UtilisateurEntity user) {}
+
+    @Override
+    public void updateByCache(CacheEntity cache) {}
 }

@@ -14,5 +14,8 @@ public interface VisiteDao extends Dao<VisiteEntity>{
     public List<VisiteEntity> findByCache(CacheEntity cache);
     public void deleteByUser(UtilisateurEntity user);
     public void deleteByCache(CacheEntity cache);
+    public void updateByUser(UtilisateurEntity user);
+    public void updateByCache(CacheEntity cache);
+
 
 }
