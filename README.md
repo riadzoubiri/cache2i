@@ -20,7 +20,7 @@ Pas besoin de créer une db Mongo, la solution se charge de le faire.
 
 ## Contributing
 
-Projet encadré par Mme Isabelle Le Glaz.\
+Projet encadré par Mme Isabelle LE GLAZ.\
 Réalisé par Victorine DORAL & Riyad ZOUBIRI.
 
 ## License
