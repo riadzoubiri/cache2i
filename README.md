@@ -20,8 +20,8 @@ Pas besoin de créer une db Mongo, la solution se charge de le faire.
 
 ## Contributing
 
-Projet encadrée par Mme Isabelle Le Glaz.\
-Réalisé par Victorine Doral & Riyad ZOUBIRI.
+Projet encadré par Mme Isabelle Le Glaz.\
+Réalisé par Victorine DORAL & Riyad ZOUBIRI.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
