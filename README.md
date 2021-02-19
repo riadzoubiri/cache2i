@@ -16,7 +16,7 @@ Pas besoin de créer une db Mongo, la solution se charge de le faire.
 
 ## CR
 
-[a link](https://docs.google.com/document/d/1Sofhk7I1aoZbL3hS6yY_kEsC9Bjq6Z0dEPDmdCIYVxo/)
+[Disponible sur Google Drive](https://docs.google.com/document/d/1Sofhk7I1aoZbL3hS6yY_kEsC9Bjq6Z0dEPDmdCIYVxo/edit?usp=sharing)
 
 ## Contributing
 
